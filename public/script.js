@@ -18,9 +18,9 @@ function signUp() {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       //signed in 
-      var user = userCredential.user;
+      //var user = userCredential.user;
       //datasets page
-      window.location.href = 'datasets.html'; 
+      window.location.href = 'confirm.html'; 
     })
     .catch((error) => {
       var errorCode = error.code;
