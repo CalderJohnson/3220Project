@@ -102,7 +102,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 
-const setDownloadLink = () => {
+const setDownloadLink = () => { //works now
   var storageRef = firebase.storage().refFromURL('gs://opendataset3220.appspot.com/dataSet.csv');
   storageRef.getDownloadURL().then((url) => {
     document.querySelectorAll('.download-btn').forEach(btn => {
