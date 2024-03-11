@@ -89,19 +89,54 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     //user is signed in
     console.log("User is signed in.");
+    // Optionally redirect logged-in users away from index.html
+    if (currentPage.endsWith("index.html")) {
+      window.location.href = 'datasets.html'; // Adjust as needed
+    }
   } else {
     //no user is signed in
-    window.location.href = 'index.html';
+    if (!currentPage.endsWith("index.html")) {
+      window.location.href = 'index.html';
+    }
   }
 });
 
 
 const setDownloadLink = () => {
-  const downloadLink = 'URL_TO_YOUR_CSV'; //CSV file in Firebase Storage
-  document.querySelectorAll('.download-btn').forEach(btn => {
-      btn.href = downloadLink;
+  var storageRef = firebase.storage().refFromURL('gs://opendataset3220.appspot.com/dataSet.csv');
+  storageRef.getDownloadURL().then((url) => {
+    document.querySelectorAll('.download-btn').forEach(btn => {
+      //store the download URL in a data attribute
+      btn.setAttribute('data-url', url);
+      //remove previous click listeners to prevent duplicates
+      btn.removeEventListener('click', handleDownloadClick);
+      //add click listener to handle the download
+      btn.addEventListener('click', handleDownloadClick);
+    });
+  }).catch(function(error) {
+    console.error("Error fetching download URL", error);
   });
 };
+
+const handleDownloadClick = (e) => {
+  e.preventDefault();
+  const url = e.target.getAttribute('data-url'); //retrieve the URL from the data attribute
+  fetch(url)
+    .then(response => response.blob())
+    .then(blob => {
+      const blobUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = blobUrl;
+      a.download = 'dataSet.csv'; 
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(blobUrl);
+      document.body.removeChild(a); //clean up
+    })
+    .catch(() => alert('Could not download the file.'));
+};
+
 
 //show/hide data sets based on section click
 const setupSectionLinks = () => {
