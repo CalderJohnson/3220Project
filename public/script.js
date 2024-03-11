@@ -68,4 +68,71 @@ document.addEventListener('DOMContentLoaded', function() {
       logIn();
     });
   }
+
+  var logoutButton = document.getElementById('logoutButton');
+  if (logoutButton) {
+      logoutButton.addEventListener('click', function() {
+          firebase.auth().signOut().then(function() {
+              //sign-out successful
+              console.log('User Logged Out!');
+              window.location.href = 'index.html'; //redirect to login page after logout
+          }).catch(function(error) {
+              //error
+              console.error('Logout Failed', error);
+          });
+      });
+  }
+
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    //user is signed in
+    console.log("User is signed in.");
+  } else {
+    //no user is signed in
+    window.location.href = 'index.html';
+  }
+});
+
+
+const setDownloadLink = () => {
+  const downloadLink = 'URL_TO_YOUR_CSV'; //CSV file in Firebase Storage
+  document.querySelectorAll('.download-btn').forEach(btn => {
+      btn.href = downloadLink;
+  });
+};
+
+//show/hide data sets based on section click
+const setupSectionLinks = () => {
+  document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const section = link.getAttribute('data-section');
+          document.querySelectorAll('.data-set').forEach(set => {
+              if (set.classList.contains(section)) {
+                  set.style.display = 'block';
+              } else {
+                  set.style.display = 'none';
+              }
+          });
+      });
+  });
+};
+
+//search functionality
+const setupSearch = () => {
+  document.getElementById('search-bar').addEventListener('keyup', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      document.querySelectorAll('.data-set').forEach(set => {
+          const text = set.textContent.toLowerCase();
+          set.style.display = text.includes(searchTerm) ? 'block' : 'none';
+      });
+  });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  setDownloadLink();
+  setupSectionLinks();
+  setupSearch();
 });

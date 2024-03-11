@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="datasets-styles.css">
+    <title>Data Portal</title>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <button id="logoutButton">Logout</button>
+        <a href="#" id="link-section1" data-section="section1">Section 1</a>
+        <a href="#" id="link-section2" data-section="section2">Section 2</a>
+        <a href="#" id="link-section3" data-section="section3">Section 3</a>
+    </div>
+    <div class="main-content">
+        <input type="text" id="search-bar" class="search-bar" placeholder="Search...">
+        <!-- Section 1 Data Sets -->
+        <div class="data-set section1">
+            <h3>Data Set 1</h3>
+            <p>A brief description of Data Set 1 in Section 1. This data set contains information on local wildlife populations.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+        <div class="data-set section1">
+            <h3>Data Set 2</h3>
+            <p>Overview of Data Set 2 in Section 1. This set focuses on annual rainfall patterns over the past decade.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+        <div class="data-set section1">
+            <h3>Data Set 3</h3>
+            <p>Insight into Data Set 3 in Section 1, detailing regional agricultural output and trends.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+        
+        <!-- Section 2 Data Sets -->
+        <div class="data-set section2" style="display:none;">
+            <h3>Data Set 1</h3>
+            <p>Comprehensive data on public transportation usage by demographic.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+        <div class="data-set section2" style="display:none;">
+            <h3>Data Set 2</h3>
+            <p>Year-over-year study of urban development and sprawl.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+        <div class="data-set section2" style="display:none;">
+            <h3>Data Set 3</h3>
+            <p>Analysis of local business growth and economic impact.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+
+        <!-- Section 3 Data Sets -->
+        <div class="data-set section3" style="display:none;">
+            <h3>Data Set 1</h3>
+            <p>Exploration of renewable energy adoption rates and potential.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+        <div class="data-set section3" style="display:none;">
+            <h3>Data Set 2</h3>
+            <p>Study on water consumption habits and efficiency improvements.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+        <div class="data-set section3" style="display:none;">
+            <h3>Data Set 3</h3>
+            <p>Insights into community health initiatives and outcomes.</p>
+            <a href="#" class="download-btn">Download</a>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
