@@ -11,6 +11,8 @@ var firebaseConfig = {
 //initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+const currentPage = window.location.pathname; 
+
 //sign-Up Function
 function signUp() {
   var email = document.getElementById('email').value; 
