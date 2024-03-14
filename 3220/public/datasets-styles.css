@@ -13,6 +13,11 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
+button:hover{
+    background-color: #0056b3;
+}
+
 .sidebar {
     width: 250px;
     height: 100%;
@@ -45,13 +50,13 @@ button {
 .data-set {
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 20px;
 }
 .data-set h3 {
     margin-top: 0;
 }
 .data-set p {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .download-btn {
     background-color: #007bff;
