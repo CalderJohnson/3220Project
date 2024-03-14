@@ -89,15 +89,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    //user is signed in
+    //user is signed in.
     console.log("User is signed in.");
-    // Optionally redirect logged-in users away from index.html
-    if (currentPage.endsWith("index.html")) {
-      window.location.href = 'datasets.html'; // Adjust as needed
+    if (currentPage.endsWith("index.html") || currentPage.endsWith("signup.html")) { // fixed signup page not working
+      window.location.href = 'datasets.html'; 
     }
   } else {
-    //no user is signed in
-    if (!currentPage.endsWith("index.html")) {
+    //no user is signed in.
+    if (!currentPage.endsWith("index.html") && !currentPage.endsWith("signup.html")) { 
       window.location.href = 'index.html';
     }
   }
